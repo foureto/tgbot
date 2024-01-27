@@ -1,4 +1,9 @@
+using ForetoBot.Api.Services.Telegram;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddTelegram(builder.Configuration);
 
 var app = builder.Build();
 
