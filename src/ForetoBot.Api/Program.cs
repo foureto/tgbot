@@ -3,7 +3,8 @@ using ForetoBot.Api.Services.Telegram;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddTelegram(builder.Configuration);
+    .AddTelegram(builder.Configuration)
+    .AddSpaStaticFiles(e => e.RootPath = "dist");
 
 var app = builder.Build();
 
@@ -23,6 +24,28 @@ app.MapGet("/weatherforecast", () =>
             })
         .ToArray();
     return forecast;
+});
+
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+#pragma warning disable ASP0014
+app.UseEndpoints(_ => { });
+#pragma warning restore ASP0014
+app.Use((ctx, next) =>
+{
+    if (!ctx.Request.Path.StartsWithSegments("/api") &&
+        !ctx.Request.Path.StartsWithSegments("/files") &&
+        !ctx.Request.Path.StartsWithSegments("/swagger")) return next();
+    ctx.Response.StatusCode = 404;
+    return Task.CompletedTask;
+});
+
+app.UseSpaStaticFiles();
+app.UseSpa(spa =>
+{
+    if (builder.Environment.IsDevelopment())
+        spa.UseProxyToSpaDevelopmentServer("http://127.0.0.1:4000");
 });
 
 app.Run();
