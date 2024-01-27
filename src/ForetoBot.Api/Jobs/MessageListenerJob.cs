@@ -15,6 +15,9 @@ internal class MessageListenerJob(
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        if (_settings.UseWebhooks)
+            return base.StopAsync(stoppingToken);
+
         var botClient = new TelegramBotClient(_settings.ApiKey);
         botClient.StartReceiving(
             updateHandler: HandleUpdateAsync,
@@ -28,7 +31,8 @@ internal class MessageListenerJob(
 
     private async Task HandleUpdateAsync(ITelegramBotClient client, Update update, CancellationToken token)
     {
-        await Task.Yield();
+        if (update.Message is not null)
+            await client.SendTextMessageAsync(update.Message.Chat.Id, $"Halo!", cancellationToken: token);
     }
 
     private Task HandlePollingErrorAsync(ITelegramBotClient client, Exception exception, CancellationToken token)
