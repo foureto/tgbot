@@ -16,6 +16,7 @@
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
+      "@services/*": ["src/services/*"],
     },
     /** Allow javascript files to be compiled */
     "allowJs": true,

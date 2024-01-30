@@ -1,5 +1,5 @@
 import React from "react";
-import {RouteObject} from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 
 import DefaultLayout from "../layouts/DefaultLayout";
 import MainPage from "../pages/MainPage";
@@ -7,15 +7,13 @@ import MainPage from "../pages/MainPage";
 const publicRoutes: RouteObject[] = [
   {
     path: "",
-    element: <DefaultLayout/>,
+    element: <DefaultLayout />,
     errorElement: "loading...",
-    loader: ({request}) => {
+    loader: () => {
       return true;
     },
-    children: [
-      {index: true, path: "", element: <MainPage/>},
-    ],
+    children: [{ index: true, path: "", element: <MainPage /> }],
   },
-]
+];
 
 export default publicRoutes;

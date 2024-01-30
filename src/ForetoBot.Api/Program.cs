@@ -13,7 +13,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/api/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
             new
@@ -27,8 +27,8 @@ app.MapGet("/weatherforecast", () =>
 });
 
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 #pragma warning disable ASP0014
 app.UseEndpoints(_ => { });
 #pragma warning restore ASP0014

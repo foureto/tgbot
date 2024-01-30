@@ -1,4 +1,8 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+EXPOSE 80
+EXPOSE 443
+
+RUN apt update | apt install nodejs | npm install --global yarn
 WORKDIR /app
 
 # Copy everything

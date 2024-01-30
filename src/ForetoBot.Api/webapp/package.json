@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vkruglikov/react-telegram-web-app": "^2.1.9",
+    "antd": "^5.13.3",
     "effector": "^23.1.0",
     "effector-react": "^23.1.0",
     "effector-storage": "^7.0.0",

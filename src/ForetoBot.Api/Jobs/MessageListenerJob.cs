@@ -22,7 +22,7 @@ internal class MessageListenerJob(
         botClient.StartReceiving(
             updateHandler: HandleUpdateAsync,
             pollingErrorHandler: HandlePollingErrorAsync,
-            receiverOptions: new ReceiverOptions {AllowedUpdates = Array.Empty<UpdateType>()},
+            receiverOptions: new ReceiverOptions { AllowedUpdates = Array.Empty<UpdateType>() },
             cancellationToken: stoppingToken
         );
 
