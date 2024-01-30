@@ -1,7 +1,8 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build-env
-
-RUN apt update -y && \
-    apt install nodejs -y &&  \
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs && \
     npm install --global yarn
 WORKDIR /app
 
