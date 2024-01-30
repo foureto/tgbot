@@ -2,7 +2,9 @@
 EXPOSE 80
 EXPOSE 443
 
-RUN apt update && apt install nodejs && npm install --global yarn
+RUN apt-get update -y && \
+    apt-get install nodejs -y &&  \
+    npm install --global yarn
 WORKDIR /app
 
 # Copy everything
