@@ -12,6 +12,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
+            "@models": "/src/models",
             "@components": "/src/components",
             "@styles": "/src/styles",
             "@pages": "/src/pages",
