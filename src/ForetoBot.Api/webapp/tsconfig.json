@@ -18,6 +18,7 @@
       "@pages/*": ["src/pages/*"],
       "@services/*": ["src/services/*"],
       "@models/*": ["src/models/*"],
+      "@stores/*": ["src/stores/*"],
     },
     /** Allow javascript files to be compiled */
     "allowJs": true,

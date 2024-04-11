@@ -1,9 +1,17 @@
-using ForetoBot.Api.Services.Telegram;
+using Flour.Logging;
+using ForetoBot.Business;
+using Wolverine;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host
+    .UseLogging()
+    .UseWolverine(opts => opts.ApplicationAssembly = typeof(BusinessInjections).Assembly);
+
 builder.Services
-    .AddTelegram(builder.Configuration)
+    .AddControllers().Services
+    .AddBusiness(builder.Configuration)
+    .AddHttpClient()
     .AddSpaStaticFiles(e => e.RootPath = "dist");
 
 var app = builder.Build();
@@ -47,5 +55,7 @@ app.UseSpa(spa =>
     if (builder.Environment.IsDevelopment())
         spa.UseProxyToSpaDevelopmentServer("http://127.0.0.1:4000");
 });
+
+app.MapControllers();
 
 app.Run();
