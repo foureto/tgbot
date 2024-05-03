@@ -1,11 +1,11 @@
 import React from "react";
-import "./GlobalError.scss";
+import "./GlobalLoader.scss";
 
 export interface GlobalErrorProps {
   message?: string;
 }
 
-const GlobalError: React.FC<GlobalErrorProps> = ({ message }) => {
+const GlobalLoader: React.FC<GlobalErrorProps> = ({ message }) => {
   return (
     <div className="e-container">
       <div className="square">
@@ -18,4 +18,4 @@ const GlobalError: React.FC<GlobalErrorProps> = ({ message }) => {
   );
 };
 
-export default GlobalError;
+export default GlobalLoader;

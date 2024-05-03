@@ -1,56 +1,74 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { setDebug } from "@tma.js/sdk";
 import {
-  BackButton,
-  MainButton,
-  WebAppProvider,
+  SDKProvider,
+  DisplayGate,
   useThemeParams,
-  useWebApp,
-} from "@vkruglikov/react-telegram-web-app";
+  useLaunchParams,
+} from "@tma.js/sdk-react";
 import { ConfigProvider, theme } from "antd";
-import { themeChanged, themeParamsChanged } from "@stores/app.store";
+import GlobalLoader from "@components/GlobalLoader";
 
-const DefaultLayout: React.FC = () => {
-  const WebApp = useWebApp();
-  const [colorScheme, themeParams] = useThemeParams();
+const ErrorSdk: React.FC<{ error: unknown }> = () => (
+  <GlobalLoader message={"error"} />
+);
 
-  React.useEffect(() => {
-    if (colorScheme && themeParams) {
-      alert(1);
-      themeChanged(colorScheme);
-      themeParamsChanged(themeParams);
-    }
-  }, [colorScheme, themeParams]);
+const LoadingSdk: React.FC = () => <GlobalLoader message={"Loading..."} />;
 
-  const antTheme =
-    colorScheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm;
+const InitializingSdk: React.FC = () => (
+  <GlobalLoader message={"Initializing..."} />
+);
+
+const Root: React.FC = () => {
+  const themeparams = useThemeParams();
+  const antTheme = themeparams.isDark
+    ? theme.darkAlgorithm
+    : theme.defaultAlgorithm;
 
   return (
     <ConfigProvider
-      theme={
-        themeParams?.text_color
-          ? {
-              algorithm: [theme.compactAlgorithm, antTheme],
-              token: {
-                colorBgBase: themeParams.bg_color,
-              },
-            }
-          : undefined
-      }
+      theme={{
+        algorithm: [antTheme, theme.compactAlgorithm],
+        token: {
+          colorBgBase: themeparams.get("backgroundColor"),
+          colorBgContainer: themeparams.get("secondaryBackgroundColor"),
+          colorPrimary: themeparams.get("textColor"),
+          colorText: themeparams.get("textColor"),
+          colorTextBase: themeparams.get("textColor"),
+        },
+      }}
     >
-      <WebAppProvider
-        options={{
-          smoothButtonsTransition: true,
-        }}
+      <div
+        className="main-container"
+        style={{ color: themeparams.get("textColor") }}
       >
-        <div className="main-container">
-          {WebApp.version}
-          <Outlet />
-        </div>
-        <MainButton />
-        <BackButton />
-      </WebAppProvider>
+        <Outlet />
+      </div>
     </ConfigProvider>
+  );
+};
+
+const DefaultLayout: React.FC = () => {
+  const launchParams = useLaunchParams();
+
+  React.useEffect(() => {
+    setDebug(true);
+    import("eruda").then((lib) => lib.default.init());
+  }, [launchParams]);
+
+  return (
+    <SDKProvider
+      options={{ acceptCustomStyles: true, cssVars: true, complete: true }}
+    >
+      <DisplayGate
+        error={ErrorSdk}
+        initial={InitializingSdk}
+        loading={LoadingSdk}
+      >
+        <Root />
+      </DisplayGate>
+    </SDKProvider>
   );
 };
 

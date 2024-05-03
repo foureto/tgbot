@@ -8,11 +8,13 @@
     "test": "eslint src --fix"
   },
   "dependencies": {
-    "@vkruglikov/react-telegram-web-app": "^2.1.9",
+    "@tma.js/sdk": "^1.5.3",
+    "@tma.js/sdk-react": "^2.0.3",
     "antd": "^5.13.3",
     "effector": "^23.1.0",
     "effector-react": "^23.1.0",
     "effector-storage": "^7.0.0",
+    "eruda": "^3.0.1",
     "moment": "^2.30.1",
     "patronum": "^2.2.0",
     "react": "^18.2.0",

@@ -15,6 +15,16 @@ const openNotificationError = (message: string) => {
   });
 };
 
+export interface IResult {
+  statusCode: number;
+  message: string;
+  success: boolean;
+}
+
+export interface IDataResult<T> extends IResult {
+  data: T;
+}
+
 export abstract class ServiceBase {
   protected static BASE_URL = "";
 

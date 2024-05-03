@@ -2,7 +2,7 @@
   "compilerOptions": {
     "types": ["vite/client"],
     /** Specify ECMAScript target version */
-    "target": "es2019",
+    "target": "ES2022",
     /** Specify JSX code generation */
     "jsx": "react",
     /** Specify module code generation */
@@ -35,7 +35,7 @@
     /** Include modules imported with '.json' extension */
     "resolveJsonModule": true,
     /** Unconditionally emit imports for unresolved files */
-    "isolatedModules": true
+    "isolatedModules": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "config"]

@@ -6,22 +6,22 @@ import {
   sample,
 } from "effector";
 import TestService from "@services/Test/TestService";
-import { WeatherItem } from "@services/Test/models";
+import { DataItem } from "@services/Test/models";
 
 const weatherRequested = createEvent();
 
-const getWeatherFx = createEffect(async () => await TestService.getWeather());
+const getDataFx = createEffect(() => TestService.getData());
 
-const $weather = createStore<WeatherItem[]>(null as any).on(
-  getWeatherFx.doneData,
-  (_, e) => e,
+const $weather = createStore<DataItem[]>(null as any).on(
+  getDataFx.doneData,
+  (_, e) => e.data,
 );
 
 const $loading = createStore<boolean>(false)
-  .on(getWeatherFx.pending, (_, e) => e)
-  .reset([getWeatherFx.done, getWeatherFx.fail]);
+  .on(getDataFx.pending, (_, e) => e)
+  .reset([getDataFx.done, getDataFx.fail]);
 
-sample({ clock: weatherRequested, target: getWeatherFx });
+sample({ clock: weatherRequested, target: getDataFx });
 
 const $data = combine({
   weather: $weather,
