@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "artifacts", "artifacts", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForetoBot.Business", "src\ForetoBot.Business\ForetoBot.Business.csproj", "{1A8C91FB-7D3F-4912-ABF5-1F986C049847}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flour.YandexSpeechKit", "src\Flour.YandexSpeechKit\Flour.YandexSpeechKit.csproj", "{F8513CE4-58A6-4F9D-A135-B48632404C06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +34,14 @@ Global
 		{1A8C91FB-7D3F-4912-ABF5-1F986C049847}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A8C91FB-7D3F-4912-ABF5-1F986C049847}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A8C91FB-7D3F-4912-ABF5-1F986C049847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8513CE4-58A6-4F9D-A135-B48632404C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8513CE4-58A6-4F9D-A135-B48632404C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8513CE4-58A6-4F9D-A135-B48632404C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8513CE4-58A6-4F9D-A135-B48632404C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21AF50A6-673A-4D48-87E8-6ECC55F5BF6B} = {52DF27BA-5A3C-4C35-BD99-A9943A44E1FC}
 		{1A8C91FB-7D3F-4912-ABF5-1F986C049847} = {52DF27BA-5A3C-4C35-BD99-A9943A44E1FC}
+		{F8513CE4-58A6-4F9D-A135-B48632404C06} = {52DF27BA-5A3C-4C35-BD99-A9943A44E1FC}
 	EndGlobalSection
 EndGlobal
