@@ -1,19 +1,39 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Google.Protobuf;
+using Grpc.Core;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Speechkit.Tts.V3;
 
 namespace Flour.YandexSpeechKit.Internals;
 
 internal class SpeechKitService(
     Synthesizer.SynthesizerClient synthesizerClient,
+    IOptions<SpeechKitSettings> settings,
     ILogger<SpeechKitService> logger) : ISpeechKitService
 {
-    private readonly Synthesizer.SynthesizerClient _synthesizerClient = synthesizerClient;
-
-    public Task<byte[]> GenerateSpeech(string text, CancellationToken token)
+    public async Task<Stream> GenerateSpeech(string text, CancellationToken token = default)
     {
-        synthesizerClient.UtteranceSynthesis(new UtteranceSynthesisRequest
-        {
+        var result = synthesizerClient.UtteranceSynthesis(new UtteranceSynthesisRequest
+            {
+                Text = "тест",
+                OutputAudioSpec = new AudioFormatOptions
+                {
+                    ContainerAudio = new ContainerAudio
+                        {ContainerAudioType = ContainerAudio.Types.ContainerAudioType.Wav}
+                }
+            },
+            new Metadata
+            {
+                {"Authorization", $"Api-Key {settings.Value.ApiKey}"},
+                {"x-folder-id", settings.Value.FolderId}
+            });
 
-        });
+
+        var ms = new MemoryStream();
+        await foreach (var chunk in result.ResponseStream.ReadAllAsync(cancellationToken: token))
+            chunk.AudioChunk.WriteTo(ms);
+
+        ms.Position = 0;
+        return ms;
     }
 }

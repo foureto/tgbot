@@ -1,0 +1,19 @@
+.account-icon {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+}
+
+.account-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  align-content: end;
+}
+
+
+.account-item-hint {
+  color: rgb(163, 162, 162);
+  font-size: 10pt;
+}

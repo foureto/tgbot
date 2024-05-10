@@ -2,5 +2,5 @@
 
 public interface ISpeechKitService
 {
-    Task<byte[]> GenerateSpeech(string text, CancellationToken token);
+    Task<Stream> GenerateSpeech(string text, CancellationToken token = default);
 }

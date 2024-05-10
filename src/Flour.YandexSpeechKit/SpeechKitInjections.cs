@@ -1,4 +1,5 @@
 ﻿using Flour.YandexSpeechKit.Internals;
+using Grpc.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

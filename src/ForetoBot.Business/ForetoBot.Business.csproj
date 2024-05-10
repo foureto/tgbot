@@ -19,4 +19,8 @@
       <Folder Include="Commons\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Flour.YandexSpeechKit\Flour.YandexSpeechKit.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -18,10 +18,10 @@ internal class TjWebHookWorker(IServiceProvider serviceProvider, ILogger<TjWebHo
         
         var webhookAddress = $"{settings.Value.WebHookAddress.TrimEnd('/')}/bot/hook";
         
-        await botClient.SetWebhookAsync(
-            url: webhookAddress,
-            allowedUpdates: Array.Empty<UpdateType>(),
-            cancellationToken: cancellationToken);
+        // await botClient.SetWebhookAsync(
+        //     url: webhookAddress,
+        //     allowedUpdates: Array.Empty<UpdateType>(),
+        //     cancellationToken: cancellationToken);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

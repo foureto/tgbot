@@ -1,4 +1,5 @@
-﻿using ForetoBot.Api.Extensions;
+﻿using Flour.YandexSpeechKit;
+using ForetoBot.Api.Extensions;
 using ForetoBot.Business.Commons.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,9 +7,16 @@ namespace ForetoBot.Api.Controllers;
 
 [ApiController]
 [Route("/api/data")]
-public class SampleController : ControllerBase
+public class SampleController(ISpeechKitService synth) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetData()
-        => this.Respond(ResultList<object>.Ok(Enumerable.Range(1, 10).Select(e => new { one = e })));
+        => this.Respond(ResultList<object>.Ok(Enumerable.Range(1, 10).Select(e => new {one = e})));
+
+    [HttpGet("text2speech")]
+    public async Task<IActionResult> TextToSpeech()
+    {
+        var test = await synth.GenerateSpeech("qweqw");
+        return File(test, "audio/wav");
+    }
 }
