@@ -17,6 +17,6 @@ public class SampleController(ISpeechKitService synth) : ControllerBase
     public async Task<IActionResult> TextToSpeech()
     {
         var test = await synth.GenerateSpeech("qweqw");
-        return File(test, "audio/wav");
+        return File(test, "audio/ogg", Guid.NewGuid().ToString("N"));
     }
 }

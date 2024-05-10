@@ -13,13 +13,20 @@ internal class SpeechKitService(
 {
     public async Task<Stream> GenerateSpeech(string text, CancellationToken token = default)
     {
-        var result = synthesizerClient.UtteranceSynthesis(new UtteranceSynthesisRequest
+        using var result = synthesizerClient.UtteranceSynthesis(new UtteranceSynthesisRequest
             {
                 Text = "тест",
                 OutputAudioSpec = new AudioFormatOptions
                 {
+                    RawAudio = new RawAudio
+                    {
+                        AudioEncoding = RawAudio.Types.AudioEncoding.Linear16Pcm,
+                        SampleRateHertz = 22050,
+                    },
                     ContainerAudio = new ContainerAudio
-                        {ContainerAudioType = ContainerAudio.Types.ContainerAudioType.Wav}
+                    {
+                        ContainerAudioType = ContainerAudio.Types.ContainerAudioType.OggOpus,
+                    }
                 }
             },
             new Metadata
@@ -31,7 +38,7 @@ internal class SpeechKitService(
 
         var ms = new MemoryStream();
         await foreach (var chunk in result.ResponseStream.ReadAllAsync(cancellationToken: token))
-            chunk.AudioChunk.WriteTo(ms);
+            chunk.AudioChunk.Data.WriteTo(ms);
 
         ms.Position = 0;
         return ms;
