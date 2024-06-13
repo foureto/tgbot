@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using IResult = ForetoBot.Business.Commons.Models.IResult;
+﻿using ForetoBot.Business.Commons.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ForetoBot.Api.Extensions;
 
 internal static class ApiExtensions
 {
-    public static IActionResult Respond(this ControllerBase controllerBase, IResult result)
-        => controllerBase.StatusCode(result.StatusCode, result);
+    public static IActionResult Respond(this ControllerBase controllerBase, IAppResult appResult)
+        => controllerBase.StatusCode(appResult.StatusCode, appResult);
+
 }

@@ -1,4 +1,5 @@
-﻿using Marten;
+﻿using ForetoBot.DataAccess.Domain;
+using Marten;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Weasel.Core;
@@ -23,9 +24,6 @@ public static class DataAccessInjections
     private static IServiceCollection ConfigureStore(this IServiceCollection services)
     {
         return services
-            .ConfigureMarten(options =>
-            {
-                // options.RegisterDocumentType<ModelName>();
-            });
+            .ConfigureMarten(options => { options.RegisterDocumentType<GameBlock>(); });
     }
 }

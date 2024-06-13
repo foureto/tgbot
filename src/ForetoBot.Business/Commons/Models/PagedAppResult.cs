@@ -3,7 +3,7 @@
 namespace ForetoBot.Business.Commons.Models;
 
 [DataContract]
-public class PagedResult<T> : IResult<IEnumerable<T>>
+public class PagedAppResult<T> : IAppResult<IEnumerable<T>>
 {
     [DataMember(Order = 3)] public int Count { get; set; }
     [DataMember(Order = 4)] public int Page { get; set; }
@@ -13,58 +13,58 @@ public class PagedResult<T> : IResult<IEnumerable<T>>
     [DataMember(Order = 2)] public string Message { get; set; }
     [DataMember(Order = 7)] public int StatusCode { get; set; }
 
-    public static PagedResult<T> Ok(IEnumerable<T> data, int count = 0, int page = 0, int total = 0)
+    public static PagedAppResult<T> Ok(IEnumerable<T> data, int count = 0, int page = 0, int total = 0)
     {
         return New(null, 200, data, true, count, page, total);
     }
 
-    public static PagedResult<T> Created(IEnumerable<T> data, int count = 0, int page = 0, int total = 0)
+    public static PagedAppResult<T> Created(IEnumerable<T> data, int count = 0, int page = 0, int total = 0)
     {
         return New(null, 201, data, true, count, page, total);
     }
 
-    public static PagedResult<T> Updated(IEnumerable<T> data = default, int count = 0, int page = 0, int total = 0)
+    public static PagedAppResult<T> Updated(IEnumerable<T> data = default, int count = 0, int page = 0, int total = 0)
     {
         return New(null, 204, data, true, count, page, total);
     }
 
-    public static PagedResult<T> Bad(string message)
+    public static PagedAppResult<T> Bad(string message)
     {
         return New(message, 400);
     }
 
-    public static PagedResult<T> Forbidden(string message)
+    public static PagedAppResult<T> Forbidden(string message)
     {
         return New(message, 401);
     }
 
-    public static PagedResult<T> UnAuthorized(string message)
+    public static PagedAppResult<T> UnAuthorized(string message)
     {
         return New(message, 403);
     }
 
-    public static PagedResult<T> NotFound(string message)
+    public static PagedAppResult<T> NotFound(string message)
     {
         return New(message, 404);
     }
 
-    public static PagedResult<T> Failed(string message, int code = 500)
+    public static PagedAppResult<T> Failed(string message, int code = 500)
     {
         return New(message, code);
     }
 
-    public static PagedResult<T> Failed(IResult result)
+    public static PagedAppResult<T> Failed(IAppResult appResult)
     {
-        return New(result.Message, result.StatusCode);
+        return New(appResult.Message, appResult.StatusCode);
     }
 
-    public static PagedResult<T> Internal(string message)
+    public static PagedAppResult<T> Internal(string message)
     {
         return New(message);
     }
 
 
-    private static PagedResult<T> New(
+    private static PagedAppResult<T> New(
         string message,
         int code = 500,
         IEnumerable<T> data = default,

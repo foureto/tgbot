@@ -1,13 +1,13 @@
 ﻿namespace ForetoBot.Business.Commons.Models;
 
-public interface IResult
+public interface IAppResult
 {
     public bool Success { get; set; }
     public string Message { get; set; }
     public int StatusCode { get; set; }
 }
 
-public interface IResult<T> : IResult
+public interface IAppResult<T> : IAppResult
 {
     T Data { get; set; }
 }

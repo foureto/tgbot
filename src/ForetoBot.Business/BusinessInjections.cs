@@ -1,5 +1,6 @@
 ﻿using Flour.YandexSpeechKit;
 using ForetoBot.Business.Jobs;
+using ForetoBot.Business.Services.FileStore;
 using ForetoBot.Business.Services.Telegram;
 using ForetoBot.DataAccess;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ public static class BusinessInjections
             .AddDataAccess(configuration)
             .AddTelegram(configuration)
             .AddSpeechKit(configuration)
+            .AddGoogle(configuration)
             .AddHostedService<InitialJob>();
     }
 }

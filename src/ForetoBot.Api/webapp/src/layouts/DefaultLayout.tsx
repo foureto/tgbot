@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { setDebug } from "@tma.js/sdk";
 import {
   SDKProvider,
-  DisplayGate,
   useThemeParams,
   useLaunchParams,
 } from "@tma.js/sdk-react";
@@ -31,18 +30,15 @@ const Root: React.FC = () => {
       theme={{
         algorithm: [antTheme, theme.compactAlgorithm],
         token: {
-          colorBgBase: themeparams.get("backgroundColor"),
-          colorBgContainer: themeparams.get("secondaryBackgroundColor"),
-          colorPrimary: themeparams.get("textColor"),
-          colorText: themeparams.get("textColor"),
-          colorTextBase: themeparams.get("textColor"),
+          colorBgBase: themeparams.bgColor,
+          colorBgContainer: themeparams.secondaryBgColor,
+          colorPrimary: themeparams.textColor,
+          colorText: themeparams.textColor,
+          colorTextBase: themeparams.textColor,
         },
       }}
     >
-      <div
-        className="main-container"
-        style={{ color: themeparams.get("textColor") }}
-      >
+      <div className="main-container" style={{ color: themeparams.textColor }}>
         <Outlet />
       </div>
     </ConfigProvider>
@@ -58,16 +54,8 @@ const DefaultLayout: React.FC = () => {
   }, [launchParams]);
 
   return (
-    <SDKProvider
-      options={{ acceptCustomStyles: true, cssVars: true, complete: true }}
-    >
-      <DisplayGate
-        error={ErrorSdk}
-        initial={InitializingSdk}
-        loading={LoadingSdk}
-      >
-        <Root />
-      </DisplayGate>
+    <SDKProvider acceptCustomStyles={true}>
+      <Root />
     </SDKProvider>
   );
 };

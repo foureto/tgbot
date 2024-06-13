@@ -26,6 +26,8 @@ app.Use((ctx, next) =>
 {
     if (!ctx.Request.Path.StartsWithSegments("/api") &&
         !ctx.Request.Path.StartsWithSegments("/files") &&
+        !ctx.Request.Path.StartsWithSegments("/admin") &&
+        !ctx.Request.Path.StartsWithSegments("/api-docs") &&
         !ctx.Request.Path.StartsWithSegments("/swagger")) return next();
     ctx.Response.StatusCode = 404;
     return Task.CompletedTask;

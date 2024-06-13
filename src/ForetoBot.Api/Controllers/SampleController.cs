@@ -11,7 +11,7 @@ public class SampleController(ISpeechKitService synth) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetData()
-        => this.Respond(ResultList<object>.Ok(Enumerable.Range(1, 10).Select(e => new {one = e})));
+        => this.Respond(AppResultList<object>.Ok(Enumerable.Range(1, 10).Select(e => new {one = e})));
 
     [HttpGet("text2speech")]
     public async Task<IActionResult> TextToSpeech()
