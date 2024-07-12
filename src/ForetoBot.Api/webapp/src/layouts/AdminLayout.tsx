@@ -1,27 +1,24 @@
-import { Layout } from "antd";
-import Sider from "antd/es/layout/Sider";
 import React from "react";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
+import SideMenu from "@components/Admin/SideMenu";
 
-const { Header, Content, Footer } = Layout;
-
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: String(index + 1),
-  label: `nav ${index + 1}`,
-}));
+const { Header, Content, Footer, Sider } = Layout;
 
 const AdminLayout: React.FC = () => {
   return (
     <Layout>
-      <Header>header</Header>
+      <Header style={{ color: "#eee" }}>qwe</Header>
       <Layout>
-        <Sider>left sidebar</Sider>
-        <Content>
+        <Sider style={{ padding: "10px" }} width={250}>
+          <SideMenu />
+        </Sider>
+        <Content style={{ padding: "15px" }}>
           <Outlet />
         </Content>
-        <Sider>right sidebar</Sider>
+        <Sider></Sider>
       </Layout>
-      <Footer>footer</Footer>
+      <Footer>(c) 2024</Footer>
     </Layout>
   );
 };

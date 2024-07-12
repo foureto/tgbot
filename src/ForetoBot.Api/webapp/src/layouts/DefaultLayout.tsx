@@ -7,17 +7,6 @@ import {
   useLaunchParams,
 } from "@tma.js/sdk-react";
 import { ConfigProvider, theme } from "antd";
-import GlobalLoader from "@components/GlobalLoader";
-
-const ErrorSdk: React.FC<{ error: unknown }> = () => (
-  <GlobalLoader message={"error"} />
-);
-
-const LoadingSdk: React.FC = () => <GlobalLoader message={"Loading..."} />;
-
-const InitializingSdk: React.FC = () => (
-  <GlobalLoader message={"Initializing..."} />
-);
 
 const Root: React.FC = () => {
   const themeparams = useThemeParams();

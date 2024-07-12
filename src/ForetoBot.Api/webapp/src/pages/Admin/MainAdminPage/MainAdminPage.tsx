@@ -1,7 +1,7 @@
 import React from "react";
 
 const MainAdminPage: React.FC = () => {
-  return <></>;
+  return <>Welcome...</>;
 };
 
 export default MainAdminPage;

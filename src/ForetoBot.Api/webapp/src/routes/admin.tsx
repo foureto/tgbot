@@ -4,6 +4,7 @@ import GlobalLoader from "@components/GlobalLoader";
 import AdminLayout from "../layouts/AdminLayout";
 import ComponentsPage from "@pages/ComponentsPage";
 import MainAdminPage from "@pages/Admin/MainAdminPage";
+import DomansPage from "@pages/Admin/Games/DomansPage";
 
 const adminRoutes: RouteObject[] = [
   {
@@ -13,7 +14,11 @@ const adminRoutes: RouteObject[] = [
     loader: () => {
       return true;
     },
-    children: [{ index: true, path: "", element: <MainAdminPage /> }],
+    children: [
+      { index: true, path: "", element: <MainAdminPage /> },
+      { index: true, path: "main", element: <MainAdminPage /> },
+      { index: true, path: "games/doman", element: <DomansPage /> },
+    ],
   },
   {
     path: "/components",
