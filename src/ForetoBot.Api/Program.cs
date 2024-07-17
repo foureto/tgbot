@@ -1,4 +1,5 @@
 using Flour.Logging;
+using ForetoBot.Api.Extensions;
 using ForetoBot.Business;
 using Wolverine;
 
@@ -42,4 +43,5 @@ app.UseSpa(spa =>
 
 app.MapControllers();
 
+await app.Migrate();
 app.Run();

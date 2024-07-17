@@ -24,5 +24,12 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@html-eslint/require-img-alt": "off",
     "jsx-a11y/alt-text": [0],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+        singleQuote: false,
+      },
+    ],
   },
 };

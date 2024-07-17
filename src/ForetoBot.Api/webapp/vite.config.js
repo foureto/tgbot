@@ -18,6 +18,7 @@ export default defineConfig({
             "@pages": "/src/pages",
             "@services": "/src/services",
             "@stores": "/src/stores",
+            "@helpers": "/src/helpers",
         },
     },
 });

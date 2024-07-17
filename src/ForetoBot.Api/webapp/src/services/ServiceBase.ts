@@ -29,7 +29,7 @@ export abstract class ServiceBase {
   protected static BASE_URL = "";
 
   protected static getUrl(url: string): string {
-    return `/api/${this.BASE_URL}${url}`;
+    return `/api/admin/${this.BASE_URL}${url}`;
   }
 
   protected static async http(
@@ -42,19 +42,20 @@ export abstract class ServiceBase {
     const headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "X-CSRF": "bo",
+      "X-CSRF": "tga",
       ...otherHeaders,
     };
 
-    if (otherHeaders && otherHeaders["Content-Type"] === null) {
-      delete otherHeaders["Content-Type"];
+    if (headers && headers["Content-Type"] === null) {
+      delete headers["Content-Type"];
     }
+
     const response = await fetch(this.getUrl(url), {
       method,
       body:
         method === "GET"
           ? null
-          : otherHeaders["Content-Type"]
+          : headers["Content-Type"]
             ? JSON.stringify(data)
             : data,
       credentials: "include",

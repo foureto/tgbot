@@ -19,6 +19,7 @@
       "@services/*": ["src/services/*"],
       "@models/*": ["src/models/*"],
       "@stores/*": ["src/stores/*"],
+      "@helpers/*": ["src/helpers/*"],
     },
     /** Allow javascript files to be compiled */
     "allowJs": true,

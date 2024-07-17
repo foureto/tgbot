@@ -5,6 +5,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import ComponentsPage from "@pages/ComponentsPage";
 import MainAdminPage from "@pages/Admin/MainAdminPage";
 import DomansPage from "@pages/Admin/Games/DomansPage";
+import DetailsPage from "@pages/Admin/Games/DomansPage/DetailsPage";
 
 const adminRoutes: RouteObject[] = [
   {
@@ -15,9 +16,10 @@ const adminRoutes: RouteObject[] = [
       return true;
     },
     children: [
-      { index: true, path: "", element: <MainAdminPage /> },
-      { index: true, path: "main", element: <MainAdminPage /> },
-      { index: true, path: "games/doman", element: <DomansPage /> },
+      { path: "", element: <MainAdminPage /> },
+      { path: "main", element: <MainAdminPage /> },
+      { path: "games/doman", element: <DomansPage /> },
+      { path: "games/doman/:id", element: <DetailsPage /> },
     ],
   },
   {

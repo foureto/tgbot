@@ -4,7 +4,9 @@ namespace ForetoBot.DataAccess.Domain.Games;
 
 public class DomanCategory : BaseEntity<int>
 {
-    public StoredText Name { get; set; }
-    public StoredText Description { get; set; }
-    public StoredFile Label { get; set; }
+    public int Order { get; set; }
+    public StoredText Name { get; set; } = new();
+    public StoredText Description { get; set; } = new();
+    public StoredFile Label { get; set; } = new();
+    public List<DomanCard> Cards { get; set; } = new();
 }
